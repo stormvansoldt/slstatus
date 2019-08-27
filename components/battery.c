@@ -1,6 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 #include <stdio.h>
 #include <string.h>
+#include <wchar.h>
+#include <locale.h>
 
 #include "../util.h"
 
@@ -29,8 +31,25 @@
 	const char *
 	battery_perc(const char *bat)
 	{
+		static struct {
+			int level;
+			wchar_t icon;
+		} map[] = {
+			{ 0, 0xf582 },
+			{ 1, 0xf57a },
+			{ 2, 0xf57b },
+			{ 3, 0xf57c },
+			{ 4, 0xf57d },
+			{ 5, 0xf57e },
+			{ 6, 0xf57f },
+			{ 7, 0xf580 },
+			{ 8, 0xf581 },
+			{ 9, 0xf578 },
+		};
 		int perc;
 		char path[PATH_MAX];
+
+		setlocale(LC_CTYPE, "");
 
 		if (esnprintf(path, sizeof(path),
 		              "/sys/class/power_supply/%s/capacity", bat) < 0) {
@@ -40,7 +59,7 @@
 			return NULL;
 		}
 
-		return bprintf("%d", perc);
+		return bprintf("%d %lc", perc, map[perc/10].icon);
 	}
 
 	const char *
