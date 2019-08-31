@@ -59,7 +59,7 @@
 			return NULL;
 		}
 
-		return bprintf("%d %lc", perc, map[perc/10].icon);
+		return bprintf("%lc %d%%", map[perc/10].icon, perc);
 	}
 
 	const char *
