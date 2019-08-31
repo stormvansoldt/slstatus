@@ -67,8 +67,7 @@
 		}
 		
 		if (strcmp(state, "Charging") == 0) {
-			/*return bprintf("%lc", 0xf583);*/
-			perc = 110;
+			return bprintf("%lc", 0xf583);
 		}
 		return bprintf("%lc", map[perc/10].icon);
 	}
