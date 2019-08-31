@@ -29,7 +29,7 @@
 	}
 
 	const char *
-	battery_perc(const char *bat)
+	battery_icon(const char *bat)
 	{
 		static struct {
 			int level;
@@ -45,11 +45,39 @@
 			{ 7, 0xf580 },
 			{ 8, 0xf581 },
 			{ 9, 0xf578 },
+			{11, 0xf583 },
 		};
+		setlocale(LC_CTYPE, "");
+		int perc;
+		char path[PATH_MAX], state[12];
+		
+		if (esnprintf(path, sizeof(path),
+					"/sys/class/power_supply/%s/status", bat) < 0) {
+			return NULL;
+		}
+		if (pscanf(path, "%12s", state) != 1) {
+			return NULL;
+		}
+		if (esnprintf(path, sizeof(path),
+		              "/sys/class/power_supply/%s/capacity", bat) < 0) {
+			return NULL;
+		}
+		if (pscanf(path, "%d", &perc) != 1) {
+			return NULL;
+		}
+		
+		if (strcmp(state, "Charging") == 0) {
+			/*return bprintf("%lc", 0xf583);*/
+			perc = 110;
+		}
+		return bprintf("%lc", map[perc/10].icon);
+	}
+
+	const char *
+	battery_perc(const char *bat)
+	{
 		int perc;
 		char path[PATH_MAX];
-
-		setlocale(LC_CTYPE, "");
 
 		if (esnprintf(path, sizeof(path),
 		              "/sys/class/power_supply/%s/capacity", bat) < 0) {
@@ -59,7 +87,7 @@
 			return NULL;
 		}
 
-		return bprintf("%lc %d%%", map[perc/10].icon, perc);
+		return bprintf("%d%%", perc);
 	}
 
 	const char *
