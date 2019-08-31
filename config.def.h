@@ -62,11 +62,11 @@ static const char unknown_str[] = "n/a";
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function format          argument */
-/*	{ run_command,   " %3s |",      "checkupdates | wc -l" }, */
-	{ cpu_perc,      " %3s%% |",                NULL },
-	{ temp,          " %3s℃ |", "/sys/class/hwmon/hwmon0/temp1_input" },
-	{ datetime,      " %s |",    "%a %b %e %_I:%M %p" },
-	{ battery_perc,  " %3s ",                 "BAT0" },
+/*         function        format                             argument         */
+/*	{ run_command,   " %3s |",                  "checkupdates | wc -l" }, */
+	{ cpu_perc,      " %3s%% |",                                  NULL },
+	{ temp,          " %3s℃ |",  "/sys/class/hwmon/hwmon0/temp1_input" },
+	{ datetime,      " %s |",                      "%a %b %e %_I:%M %p" },
+	{ battery_perc,  " %3s ",                                    "BAT0" },
 
 };
