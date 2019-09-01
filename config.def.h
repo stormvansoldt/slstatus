@@ -66,7 +66,7 @@ static const struct arg args[] = {
 /*	{ run_command,   " %3s |",                  "checkupdates | wc -l" }, */
 	{ cpu_perc,      " %3s%% |",                                  NULL },
 	{ temp,          " %3s℃ |",  "/sys/class/hwmon/hwmon0/temp1_input" },
-	{ datetime,      " %s |",                      "%a %b %e %_I:%M %p" },
+	{ datetime,      "   %s |",                      "%a %b %e %_I:%M %p" },
 	{ battery_icon,  " %-3s",                                    "BAT0" },
 	{ battery_perc,  " %3s ",                                    "BAT0" }, 
 };
