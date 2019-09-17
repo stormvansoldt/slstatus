@@ -64,9 +64,9 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 /*         function        format                             argument         */
 /*	{ run_command,   " %3s |",                  "checkupdates | wc -l" }, */
-	{ cpu_perc,      " %3s%% |",                                  NULL },
-	{ temp,          " %3s℃ |",  "/sys/class/hwmon/hwmon0/temp1_input" },
-	{ datetime,      "   %s |",                      "%a %b %e %_I:%M %p" },
-	{ battery_icon,  " %-3s",                                    "BAT0" },
-	{ battery_perc,  " %3s ",                                    "BAT0" }, 
+	{ cpu_perc,      " \x03 \x01%3s%% |",                                  NULL },
+	{ temp,          " \x05\x01%3s℃ |",  "/sys/class/hwmon/hwmon0/temp1_input" },
+	{ datetime,      " \x07  \x01%s |",                      "%a %b %e %_I:%M %p" },
+	{ battery_icon,  " \x04%-3s",                                    "BAT0" },
+	{ battery_perc,  " \x01%3s ",                                    "BAT0" }, 
 };
