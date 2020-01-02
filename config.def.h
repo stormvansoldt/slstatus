@@ -67,6 +67,6 @@ static const struct arg args[] = {
 	{ cpu_perc,      " \x03 \x01%3s%% |",                                  NULL },
 	{ temp,          " \x05\x01%3s℃ |",  "/sys/class/hwmon/hwmon0/temp1_input" },
 	{ datetime,      " \x07  \x01%s |",                      "%a %b %e %_I:%M %p" },
-	{ battery_icon,  " \x04%-3s",                                    "BAT0" },
-	{ battery_perc,  " \x01%3s ",                                    "BAT0" }, 
+	{ battery_icon,  " \x04%-3s",                                    "BAT1" },
+	{ battery_perc,  " \x01%3s ",                                    "BAT1" }, 
 };
